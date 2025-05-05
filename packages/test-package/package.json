@@ -1,0 +1,53 @@
+{
+	"name": "@packages/-",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"bin": {
+		"test-package-1-dev": "./lib/bin/app.cjs",
+		"test-package-1-prod": "./dist/bin/app.cjs"
+	},
+	"scripts": {
+		"------------------------INSTALLATION-------------------": "",
+		"prepare": "",
+		"pre": "git add . && npx lint-staged",
+		"link-cli": "pnpm link --global",
+		"------------------------UTILS--------------------------": "",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
+		"format": "pnpm prettier . --write && pnpm prettier . --check",
+		"clean": "",
+		"------------------------BUILDS-------------------------": "",
+		"build:dev": "pnpm tsup --config ./config/tsuprc/tsup.dev.ts",
+		"build:prod": "pnpm tsup --config ./config/tsuprc/tsup.prod.ts",
+		"build:npm": "pnpm npm:prepack && pnpm tsup --config ./config/tsuprc/tsup.prod.ts && pnpm npm:postpack",
+		"------------------------DEPLOYS------------------------": "",
+		"npm:prepack": "clean-package",
+		"npm:postpack": "clean-package restore",
+		"------------------------TESTS--------------------------": "",
+		"test": "echo \"Error: no test specified\"",
+		"------------------------NPM--------------------------": "",
+		"prepublishOnly": "pnpm build:npm"
+	},
+	"devDependencies": {
+		"@ineedj/eslintrc": "1.2.3",
+		"@ineedj/prettierrc": "3.0.0",
+		"@ineedj/tsconfig": "^1.0.0",
+		"@types/node": "^22.15.3",
+		"clean-package": "^2.2.0",
+		"esbuild-plugin-copy": "^2.1.1",
+		"eslint": "^8.57.1",
+		"prettier": "^3.4.2",
+		"tsup": "^8.3.5",
+		"typescript": "^5.6.3"
+	},
+	"publishConfig": {
+		"access": "public",
+		"directory": "dist",
+		"provenance": true,
+		"tag": "latest"
+	},
+	"dependencies": {
+		"commander": "^12.1.0"
+	}
+}

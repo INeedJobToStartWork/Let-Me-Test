@@ -1,0 +1,24 @@
+{
+	"indent": 4,
+	"remove": ["devDependencies", "dependencies", "lint-staged", "bin"],
+	"replace": {
+		"name": "let-me-test",
+		"type": "commonjs",
+		"scripts": {
+			"npm:postpack": "clean-package restore"
+		},
+		"bin": {
+			"Let-me-test": "./bin/app.mjs"
+		},
+		"exports": {
+			".": {
+				"types": {
+					"import": "./index.d.mts",
+					"require": "./index.d.ts"
+				},
+				"import": "./index.mjs",
+				"require": "./index.js"
+			}
+		}
+	}
+}
