@@ -1,2 +1,2 @@
 export * from "@/functions";
-console.log("Quack, quak!");
+console.log("Hello from test-package-1!");

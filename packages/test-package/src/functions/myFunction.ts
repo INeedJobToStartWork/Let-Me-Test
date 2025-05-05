@@ -7,10 +7,11 @@
  *
  * @example
  * import { myFunction } from "test-package-1"
- * import { mdxToMd } from "mdx-to-md"
  *
  * const results = myFunction()
  */
-export function myFunction() {}
+export function myFunction(): void {
+	console.log("Hello from myFunction!");
+}
 
 export default myFunction;
