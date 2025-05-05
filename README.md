@@ -2,3 +2,5 @@
 
 <h1 align="center">test-package-1</h1>
 <hr/>
+
+Prepared Test package to Test CLI app with exported programmatic api
