@@ -1,5 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
+
   "tasks": {
     "pre": {},
     "start": {
@@ -14,12 +15,19 @@
     "bench": {},
     "build": {},
     "build:dev": {
+      "cache": false,
+      "dependsOn": ["^build:dev"],
       "outputs": ["dist/**"]
     },
     "build:prod": {
+      "cache": true,
+      "dependsOn": ["^build:prod", "^format", "^lint:fix", "^lint"],
       "outputs": ["dist/**"]
     },
     "build:npm": {
+      "cache": true,
+      "dependsOn": ["^build:prod", "^format", "^lint"],
+      "outputs": ["dist/**"],
       "inputs": ["*", "!dist"]
     },
     "test": {},
@@ -38,15 +46,10 @@
     "npm:prepack": {},
     "npm:postpack": {},
     "prepublishOnly": {},
+    "test:coverage": {},
     "dev": {
       "cache": false,
       "persistent": true
-    },
-    "commands:dev": {
-      "outputs": []
-    },
-    "commands:prod": {
-      "outputs": []
     }
   }
 }

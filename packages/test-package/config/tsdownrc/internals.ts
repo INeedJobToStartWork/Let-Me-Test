@@ -1,4 +1,4 @@
-import { defineConfig } from "tsup";
+import { defineConfig } from "tsdown";
 
 //----------------------
 // Internals
@@ -21,7 +21,8 @@ export const PROD_OPTIMIZE = {
 
 	metafile: false,
 	treeshake: true
-} as const satisfies Parameters<typeof defineConfig>[number];
+	// } as const satisfies Parameters<typeof defineConfig>[number];
+};
 
 //TODO: FIX TYPE
 /**
@@ -30,7 +31,7 @@ export const PROD_OPTIMIZE = {
  * using Node's module.createRequire() for ESM compatibility
  * @internal
  */
-export const addNodeRequireShim = ({ format }: Parameters<typeof defineConfig>[number]["banner"]) => {
+export const addNodeRequireShim = ({ format }: any) => {
 	if (format === "esm") {
 		const banner = `
 import { createRequire } from "node:module";

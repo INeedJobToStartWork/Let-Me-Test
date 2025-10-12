@@ -14,7 +14,9 @@
     "lint:next": "turbo lint:next",
     "lint:test": "turbo lint:test",
     "format": "turbo format",
-    "clean": "turbo clean",
+    "clean:cache": "rimraf --glob \"**/.turbo\"",
+    "clean:builds": "rimraf --glob \"**/dist\" \"**/build\" \"**/lib\"",
+    "clean:node_modules": "rimraf --glob \"**/node_modules\"",
     "link-cli": "turbo link-cli",
     "link-cli:dev": "turbo link-cli",
     "unlink-cli:dev": "turbo link-cli",
@@ -33,20 +35,19 @@
     "npm:publish": "changeset publish",
     "------------------------TESTS--------------------------": "",
     "test": "turbo test",
+    "test:coverage": "turbo test:coverage",
     "bench": "turbo bench"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.10",
+    "@changesets/cli": "^2.29.7",
     "commitsmile": "^1.0.3",
     "husky": "^9.1.7",
-    "lint-staged": "^15.2.10",
-    "turbo": "latest"
+    "lint-staged": "^16.2.4",
+    "turbo": "latest",
+    "rimraf": "^6.0.1"
   },
   "engines": {
     "node": ">=20"
   },
-  "packageManager": "pnpm@9.14.2",
-  "dependencies": {
-    "@changesets/types": "^6.0.0"
-  }
+  "packageManager": "pnpm@10.18.2"
 }

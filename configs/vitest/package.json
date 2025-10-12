@@ -1,0 +1,14 @@
+{
+  "name": "@configs/vitest",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.ts",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vitest": "^3.2.4"
+  }
+}

@@ -1,5 +1,5 @@
-import { defineConfig } from "tsup";
-import { devConfigs } from "./tsup.base";
+import { defineConfig } from "tsdown";
+import { devConfigs } from "./tsdown.base";
 
 //----------------------
 // Functions
