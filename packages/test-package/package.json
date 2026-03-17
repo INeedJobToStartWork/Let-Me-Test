@@ -25,6 +25,7 @@
 		"npm:postpack": "clean-package restore",
 		"------------------------TESTS--------------------------": "",
 		"test": "vitest",
+		"test:watch": "vitest --watch",
 		"test:coverage": "vitest --coverage",
 		"------------------------NPM--------------------------": "",
 		"prepublishOnly": "pnpm build:npm"

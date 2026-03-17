@@ -36,6 +36,7 @@
     "------------------------TESTS--------------------------": "",
     "test": "turbo test",
     "test:coverage": "turbo test:coverage",
+    "test:watch": "turbo test:watch",
     "bench": "turbo bench"
   },
   "devDependencies": {
