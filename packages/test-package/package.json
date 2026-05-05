@@ -37,16 +37,16 @@
 		"@ineedj/prettierrc": "3.0.0",
 		"@ineedj/tsconfig": "^1.0.0",
 		"@types/node": "^25.6.0",
-		"@vitest/coverage-v8": "^3.2.4",
+		"@vitest/coverage-v8": "^4.1.5",
 		"clean-package": "^2.2.0",
 		"cross-env": "^10.1.0",
 		"eslint": "^8.57.1",
-		"prettier": "^3.4.2",
+		"prettier": "^3.8.3",
 		"publint": "^0.3.19",
 		"rollup-plugin-copy": "^3.5.0",
 		"tsdown": "^0.21.10",
-		"typescript": "^5.9.3",
-		"vitest": "^3.2.4"
+		"typescript": "^6.0.3",
+		"vitest": "^4.1.5"
 	},
 	"publishConfig": {
 		"access": "public",
@@ -55,7 +55,7 @@
 		"tag": "latest"
 	},
 	"dependencies": {
-		"commander": "^14.0.1"
+		"commander": "^14.0.3"
 	},
 	"engines": {
 		"node": ">=24"
