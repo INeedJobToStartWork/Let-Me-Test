@@ -1,0 +1,63 @@
+{
+	"name": "@packages/{{ name }}",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"license": "MIT",
+	"bin": {
+		"{{ name }}-dev": "./dist/bin/app.mjs"
+	},
+	"scripts": {
+		"------------------------INSTALLATION-------------------": "",
+		"prepare": "",
+		"pre": "git add . && npx lint-staged",
+		"link-cli": "pnpm link --global",
+		"------------------------UTILS--------------------------": "",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
+		"format": "pnpm prettier . --write && pnpm prettier . --check",
+		"------------------------BUILDS-------------------------": "",
+		"build:dev": "pnpm cross-env NODE_ENV=development pnpm tsdown --config-loader unrun --config ./config/tsdownrc/tsdown.dev.ts",
+		"build:prod": "pnpm cross-env NODE_ENV=production pnpm tsdown --config-loader unrun --config ./config/tsdownrc/tsdown.prod.ts",
+		"build:npm": "pnpm cross-env NODE_ENV=production pnpm npm:prepack && pnpm tsdown --config-loader unrun --config ./config/tsdownrc/tsdown.npm.ts && pnpm npm:postpack",
+		"------------------------DEPLOYS------------------------": "",
+		"npm:prepack": "clean-package",
+		"npm:postpack": "clean-package restore",
+		"------------------------TESTS--------------------------": "",
+		"test": "pnpm cross-env NODE_ENV=test pnpm vitest test",
+		"test:watch": "pnpm cross-env NODE_ENV=test pnpm vitest test --watch",
+		"test:coverage": "pnpm cross-env NODE_ENV=test pnpm vitest test --coverage",
+		"------------------------NPM--------------------------": "",
+		"prepublishOnly": "pnpm build:npm"
+	},
+	"devDependencies": {
+		"@arethetypeswrong/core": "^0.18.2",
+		"@configs/vitest": "workspace:*",
+		"@ineedj/eslintrc": "1.2.3",
+		"@ineedj/prettierrc": "3.0.0",
+		"@ineedj/tsconfig": "^1.0.0",
+		"@types/node": "^25.6.0",
+		"@vitest/coverage-v8": "^4.1.5",
+		"clean-package": "^2.2.0",
+		"cross-env": "^10.1.0",
+		"eslint": "^8.57.1",
+		"prettier": "^3.8.3",
+		"publint": "^0.3.19",
+		"rollup-plugin-copy": "^3.5.0",
+		"tsdown": "^0.21.10",
+		"typescript": "^6.0.3",
+		"vitest": "^4.1.5"
+	},
+	"publishConfig": {
+		"access": "public",
+		"directory": "dist",
+		"provenance": true,
+		"tag": "latest"
+	},
+	"dependencies": {
+		"commander": "^14.0.3"
+	},
+	"engines": {
+		"node": ">=24"
+	}
+}

@@ -1,0 +1,28 @@
+{
+	"indent": 4,
+	"remove": ["devDependencies", "dependencies", "lint-staged", "bin"],
+	"replace": {
+		"name": "{{ finalScope }}/{{ name }}",
+		"type": "commonjs",
+		"scripts": {
+			"npm:postpack": "clean-package restore"
+		},
+		"bin": {
+			"{{name}}": "./bin/app.mjs"
+		},
+		"main": "./index.cjs",
+		"module": "./index.mjs",
+		"exports": {
+			".": {
+				"import": {
+					"types": "./index.d.mts",
+					"default": "./index.mjs"
+				},
+				"require": {
+					"types": "./index.d.cts",
+					"default": "./index.cjs"
+				}
+			}
+		}
+	}
+}
