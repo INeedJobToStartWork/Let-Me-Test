@@ -9,12 +9,8 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         name: "name",
         message: "What is the name of the new package?",
         validate: (input: string) => {
-          if (!input) {
-            return "package name is required";
-          }
-          if (input.includes(" ")) {
-            return "package name cannot include spaces";
-          }
+          if (!input) return "package name is required";
+          if (input.includes(" ")) return "package name cannot include spaces";
           return true;
         },
       },
@@ -39,9 +35,9 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
       {
         type: "addMany",
         destination: "{{ turbo.paths.root }}/packages/{{ dashCase name }}",
-        base: "templates/packages",
-        templateFiles: "templates/packages/**/*",
-        globOptions: { dot: true },
+        base: "templates/packages/test-package-cli",
+        templateFiles: "templates/packages/test-package-cli/**",
+        globOptions: { dot: true, ignore: ["**/node_modules/**"] },
       },
     ],
   });

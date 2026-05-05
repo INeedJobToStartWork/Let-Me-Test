@@ -5,3 +5,4 @@ packages:
   - "turbo/generators/templates/**"
   - "!**/**/dist"
   - "!**/**/lib"
+  - "benchmarks/**"
