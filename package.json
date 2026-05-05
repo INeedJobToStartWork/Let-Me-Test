@@ -40,12 +40,12 @@
     "bench": "turbo bench"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.29.7",
+    "@changesets/cli": "^2.31.0",
     "commitsmile": "^1.0.3",
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.4",
+    "lint-staged": "^16.4.0",
     "turbo": "latest",
-    "rimraf": "^6.0.1"
+    "rimraf": "^6.1.3"
   },
   "engines": {
     "node": ">=24"
