@@ -16,16 +16,19 @@
     "build": {},
     "build:dev": {
       "cache": false,
+      "persistent": true,
       "dependsOn": ["^build:dev"],
       "outputs": ["dist/**"]
     },
     "build:prod": {
       "cache": true,
+      "persistent": true,
       "dependsOn": ["^build:prod", "^format", "^lint:fix", "^lint"],
       "outputs": ["dist/**"]
     },
     "build:npm": {
       "cache": true,
+      "persistent": true,
       "dependsOn": ["^build:prod", "^format", "^lint"],
       "outputs": ["dist/**"],
       "inputs": ["*", "!dist"]

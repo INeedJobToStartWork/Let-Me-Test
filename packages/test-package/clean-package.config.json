@@ -10,14 +10,18 @@
 		"bin": {
 			"Let-me-test": "./bin/app.mjs"
 		},
+		"main": "./index.cjs",
+		"module": "./index.mjs",
 		"exports": {
 			".": {
-				"types": {
-					"import": "./index.d.mts",
-					"require": "./index.d.ts"
+				"import": {
+					"types": "./index.d.mts",
+					"default": "./index.mjs"
 				},
-				"import": "./index.mjs",
-				"require": "./index.js"
+				"require": {
+					"types": "./index.d.cts",
+					"default": "./index.cjs"
+				}
 			}
 		}
 	}

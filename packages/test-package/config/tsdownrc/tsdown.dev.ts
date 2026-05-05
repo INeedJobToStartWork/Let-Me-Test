@@ -1,8 +1,9 @@
 import { defineConfig } from "tsdown";
-import { devConfigs } from "./tsdown.base";
+import { DEV_CONFIGS } from "./tsdown.base";
 
 //----------------------
 // Functions
 //----------------------
 
-export default defineConfig(Object.values(devConfigs));
+export default defineConfig(Object.values(DEV_CONFIGS));
+// export default defineConfig(devConfigs.PACKAGE);

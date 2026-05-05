@@ -1,6 +1,18 @@
 import { defineConfig } from "tsdown";
 
 //----------------------
+// Types
+//----------------------
+
+/** @internal */
+export enum BuildMode {
+	DEV = "development",
+	PROD = "production",
+	TEST = "test",
+	NPM = "NPM"
+}
+
+//----------------------
 // Internals
 //----------------------
 
@@ -9,20 +21,20 @@ import { defineConfig } from "tsdown";
  * @internal
  */
 export const PROD_OPTIMIZE = {
-	splitting: false,
+	// splitting: false,
 	minify: true,
 	shims: true,
 
-	bundle: true,
+	// unbundle: true,
 
-	minifyIdentifiers: true,
-	minifySyntax: true,
-	minifyWhitespace: true,
+	// minifyIdentifiers: true,
+	// minifySyntax: true,
+	// minifyWhitespace: true,
 
-	metafile: false,
+	// metafile: false,
 	treeshake: true
-	// } as const satisfies Parameters<typeof defineConfig>[number];
-};
+} as const satisfies Parameters<typeof defineConfig>[number];
+// };
 
 //TODO: FIX TYPE
 /**
