@@ -4,7 +4,7 @@ export default defaultConfig().deepMerge({
   prompts: {
     scopes: {
       workspaces: true,
-      options: [{ label: `🌍 Enviroment`, value: "enviroment" }],
+      options: [{ label: `🌍 Environment`, value: "environment" }],
       custom: true,
     },
     description: false,
