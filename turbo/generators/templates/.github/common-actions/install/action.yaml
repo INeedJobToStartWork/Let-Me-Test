@@ -1,0 +1,23 @@
+name: 'install'
+description: 'Sets up Node.js and runs install'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: 🚀 Setup pnpm
+      uses: pnpm/action-setup@v4
+    - name: 🟢 Setup node
+      uses: actions/setup-node@v4.0.2
+      with:
+        node-version-file: '.nvmrc'
+        registry-url: 'https://registry.npmjs.org'
+        cache: 'pnpm'
+
+    - name: 🤖 Setup Git User
+      shell: bash
+      run: |
+        git config --global user.email "{{ githubEmail }}"
+        git config --global user.name "{{ gitAuthorName }}"
+    - name: ↘️ Install dependencies
+      shell: bash
+      run: pnpm install --no-frozen-lockfile

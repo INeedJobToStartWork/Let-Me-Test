@@ -1,5 +1,5 @@
 {
-	"name": "@packages/{{ name }}",
+	"name": "{{#if finalScope}}{{finalScope}}/{{/if}}{{name}}",
 	"version": "0.1.0",
 	"private": true,
 	"type": "module",
