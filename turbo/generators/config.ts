@@ -146,6 +146,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
           transform: (content: string, answers: any) => {
             try {
               const pkg = JSON.parse(content);
+              pkg.name = `@monorepo/${answers.name}`;
               pkg.repository = {
                 type: "git",
                 url: `git+https://github.com/${answers.githubOwner}/${answers.githubRepo}.git`,
