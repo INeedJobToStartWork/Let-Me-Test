@@ -27,7 +27,7 @@
 		"test": "pnpm cross-env NODE_ENV=test pnpm vitest test",
 		"test:watch": "pnpm cross-env NODE_ENV=test pnpm vitest test --watch",
 		"test:coverage": "pnpm cross-env NODE_ENV=test pnpm vitest test --coverage",
-		"------------------------NPM--------------------------": "",
+		"------------------------NPM----------------------------": "",
 		"prepublishOnly": "pnpm build:npm"
 	},
 	"devDependencies": {
