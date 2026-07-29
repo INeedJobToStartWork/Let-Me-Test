@@ -5,16 +5,19 @@
 		"outDir": "./dist",
 		"baseUrl": "src",
 		"paths": {
-			"@/*": ["*", "*/index.ts", "*.ts"]
+			"@/*": ["./*", "./*/index.ts", "./*.ts"]
+			// 	"@/*": ["./src/*", "./src/*/index.ts", "./src/*.ts"] // Change this when bundlers will support 7.0 changes
 		},
+		// "paths": {
+		// },
 		"stripInternal": true,
 		// "plugins": [
 		// 	{
 		// 		"transform": "typia/lib/transform"
 		// 	}
 		// ],
-		"preserveSymlinks": true,
-		"strict": true
+		"preserveSymlinks": true
+		// "strict": true
 	},
 	"extends": "@ineedj/tsconfig/base.json"
 }
