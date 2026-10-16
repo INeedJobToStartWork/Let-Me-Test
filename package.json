@@ -40,16 +40,16 @@
     "bench": "turbo bench"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.31.0",
-    "@turbo/gen": "^2.9.9",
+    "@changesets/cli": "^3.0.3",
+    "@turbo/gen": "^2.11.9",
     "commitsmile": "^1.0.3",
     "husky": "^9.1.7",
-    "lint-staged": "^16.4.0",
+    "lint-staged": "^17.6.0",
     "rimraf": "^6.1.3",
     "turbo": "latest"
   },
   "engines": {
-    "node": ">=24"
+    "node": ">=26"
   },
-  "packageManager": "pnpm@10.33.3"
+  "packageManager": "pnpm@12.14.0"
 }

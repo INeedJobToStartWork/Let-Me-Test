@@ -3,6 +3,10 @@ packages:
   - "configs/**"
   - "packages/**"
   - "turbo/generators/templates/**"
-  - "!**/**/dist"
-  - "!**/**/lib"
+  - "!**/dist/**"
+  - "!**/lib/**"
   - "benchmarks/**"
+allowBuilds:
+  esbuild: true
+minimumReleaseAgeExclude:
+  - "@turbo/gen@2.11.9"
