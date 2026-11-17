@@ -8,5 +8,14 @@ packages:
   - "benchmarks/**"
 allowBuilds:
   esbuild: true
+# typescript-eslint has no TypeScript 7 support (TS 7 has no JS compiler API).
+# Peers in the eslint tree resolve to this TS 6; everything else keeps TS 7.
+# @typescript-eslint/parser is imported by @ineedj/eslintrc but not declared, so it is
+# added here too; otherwise it is picked up from the hoisted copy bound to TS 7.
+packageExtensions:
+  "@ineedj/eslintrc":
+    dependencies:
+      typescript: "~6.0.3"
+      "@typescript-eslint/parser": "^6.21.0"
 minimumReleaseAgeExclude:
   - "@turbo/gen@2.11.9"

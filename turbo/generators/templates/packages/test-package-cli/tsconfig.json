@@ -3,10 +3,10 @@
 	"compilerOptions": {
 		"jsx": "react",
 		"outDir": "./dist",
-		"baseUrl": "src",
+		"types": ["node"],
+		"alwaysStrict": true, // TS 7 removed `alwaysStrict: false`, which @ineedj/tsconfig/base.json still sets
 		"paths": {
-			"@/*": ["./*", "./*/index.ts", "./*.ts"]
-			// 	"@/*": ["./src/*", "./src/*/index.ts", "./src/*.ts"] // Change this when bundlers will support 7.0 changes
+			"@/*": ["./src/*", "./src/*/index.ts", "./src/*.ts"]
 		},
 		// "paths": {
 		// },

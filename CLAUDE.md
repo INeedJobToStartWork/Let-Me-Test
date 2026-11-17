@@ -34,7 +34,15 @@ cd packages/<pkg> && pnpm exec vitest run src/functions/myFunction.test.ts
 
 Package `test` scripts run `vitest test`. The `test` there is a file-name filter, not a subcommand, and vitest stays in watch mode in a TTY. Use `vitest run <path>` for one-shot runs.
 
-CI (`.github/workflows/ci.yml`) runs `pnpm lint`, `pnpm format`, and `pnpm build:npm`. The Husky pre-commit hook runs `pnpm test`.
+CI (`.github/workflows/ci.yml`) runs `pnpm lint`, `pnpm format`, and `pnpm build:npm --filter='!./turbo/generators/templates/**'`. The template is excluded because packing (attw/publint) fails on its Handlebars package name. To check a template change end to end, generate a throwaway package (`pnpm turbo gen Package --args <name> <desc> <scope> <owner> <repo> <author>`), then `pnpm install`, `pnpm build:npm` in it, run `dist/bin/app.mjs`, and delete it.
+
+Husky hooks:
+- **pre-commit** runs `lint-staged`. Each package has a `lint-staged.config.js` that runs `eslint --fix` and `prettier --write` on staged files. Commands are pinned to the package dir via `pnpm --dir`, because lint-staged runs tasks from the repo root when only one config exists.
+- **pre-push** runs `turbo run lint`, `turbo run format:check` (check-only, no writes), and `turbo run test -- --run`.
+
+Packages use TypeScript 7, but typescript-eslint doesn't support it (TS 7 has no JS compiler API). `packageExtensions` in `pnpm-workspace.yaml` gives `@ineedj/eslintrc` its own TS 6 plus `@typescript-eslint/parser`, so the whole eslint tree resolves TS 6 while builds stay on TS 7. Because TS 6+ defaults `types` to `[]`, the template tsconfig sets `"types": ["node"]`.
+
+`.gitattributes` forces LF line endings. Without it, `core.autocrlf=true` on Windows checks files out as CRLF and every file fails `prettier --check`.
 
 ## Generators (`turbo/generators/config.ts`)
 
@@ -49,7 +57,10 @@ The template directory is itself listed in `pnpm-workspace.yaml` (`turbo/generat
 - `src/bin/app.ts`: CLI entry. It side-effect-imports `@/cli`, where each file registers commands or options on the shared `commander` `program`. Then it calls `program.parse`.
 - `src/helpers/`: reusable `commander` `Option`s (`--config`, `--debug`).
 - `@/*` resolves to `src/*`. It is set in both `tsconfig.json` and `vitest.config.ts`.
-- **Build** uses tsdown via `config/tsdownrc/`. `tsdown.base.ts` defines two configs, `CLI` (bundles `commander`, no dts) and `PACKAGE` (ESM+CJS, dts, copies package.json/README/.npmrc/.npmignore into `dist`). Each is parameterized by a `BuildMode`, and `tsdown.{dev,prod,npm}.ts` pick a mode.
+- **Build** uses tsdown via `config/tsdownrc/`. `tsdown.base.ts` defines two configs, `CLI` (bundles `commander`, no dts) and `PACKAGE` (ESM+CJS, dts, copies package.json/README/.npmrc/.npmignore into `dist`). Each is parameterized by a `BuildMode`, and `tsdown.{dev,prod,npm}.ts` pick a mode. Gotchas:
+  - tsdown resolves relative paths from the config dir (`config/tsdownrc`), so `entry`, `outDir`, and `copy` are built from `process.cwd()`.
+  - Use tsdown's `copy` option, not a copy plugin. A plugin runs once per format in parallel and races on `dist/package.json` (EBUSY on Windows).
+  - `src/cli/index.ts` must use side-effect imports (`import "./version"`), not `export *`. During `build:npm`, clean-package swaps in `"type": "commonjs"`, and rolldown then drops `export *` of modules that have no exports, so the CLI ends up with no commands.
 - **Publishing**: `publishConfig.directory` is `dist`. `clean-package.config.json` rewrites `package.json` at pack time: it adds the scope, `exports`/`main`/`module`, swaps the dev bin `<name>-dev` for `<name>`, and strips dependencies. `npm:postpack` restores the original file.
 - Shared configs come from external `@ineedj/eslintrc`, `@ineedj/prettierrc`, and `@ineedj/tsconfig`. `configs/vitest` (`@configs/vitest`) is a local shared vitest config factory using jsdom and v8 coverage. The template lists it as a dependency but currently uses its own `vitest.config.ts`.
 

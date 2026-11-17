@@ -13,6 +13,7 @@
     "lint:next": "turbo lint:next",
     "lint:test": "turbo lint:test",
     "format": "turbo format",
+    "format:check": "turbo format:check",
     "clean:cache": "rimraf --glob \"**/.turbo\"",
     "clean:builds": "rimraf --glob \"**/dist\" \"**/build\" \"**/lib\"",
     "clean:node_modules": "rimraf --glob \"**/node_modules\"",

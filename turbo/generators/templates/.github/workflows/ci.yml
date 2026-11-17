@@ -19,4 +19,4 @@ jobs:
       - name: ♻️ Format
         run: pnpm format
       - name: 🏗️ Build Package
-        run: pnpm build:npm
+        run: pnpm build:npm --filter='!./turbo/generators/templates/**' # the template's Handlebars package name can't be packed

@@ -45,6 +45,7 @@
     "unlink-cli": {},
     "unlink-cli:dev": {},
     "format": {},
+    "format:check": {},
     "clean": {
       "cache": false
     },

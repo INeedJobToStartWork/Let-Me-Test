@@ -1,5 +1,4 @@
 import { UserConfig } from "tsdown";
-import copy from "rollup-plugin-copy";
 import { addNodeRequireShim, BuildMode, PROD_OPTIMIZE } from "./internals";
 
 //----------------------
@@ -27,7 +26,7 @@ export const BasicConfig = (mode: BuildMode) =>
 		// 	]
 		// }
 		CLI: {
-			entry: "bin/app.ts",
+			entry: `${process.cwd()}/src/bin/app.ts`,
 			clean: true,
 			outDir: `${process.cwd()}/dist/bin`,
 			deps: {
@@ -39,7 +38,7 @@ export const BasicConfig = (mode: BuildMode) =>
 			...(mode === BuildMode.DEV ? {} : PROD_OPTIMIZE)
 		},
 		PACKAGE: {
-			entry: ["index.ts"],
+			entry: [`${process.cwd()}/src/index.ts`],
 			outDir: `${process.cwd()}/dist`,
 
 			clean: false,
@@ -48,16 +47,9 @@ export const BasicConfig = (mode: BuildMode) =>
 			dts: true,
 			format: mode === BuildMode.DEV ? ["esm"] : ["esm", "cjs"],
 
-			plugins: [
-				copy({
-					targets: [
-						{ src: "./package.json", dest: "./dist" },
-						{ src: "./.npmrc", dest: "./dist" },
-						{ src: "./.npmignore", dest: "./dist" },
-						{ src: "./README.md", dest: "./dist" }
-					]
-				})
-			],
+			// tsdown's `copy` runs once after all formats are built. A copy plugin would run once per
+			// format (esm + cjs) in parallel and race on the same files (EBUSY on Windows).
+			copy: ["package.json", ".npmrc", ".npmignore", "README.md"].map(file => `${process.cwd()}/${file}`),
 			// attw: !isDev,
 			attw: mode === BuildMode.NPM,
 			publint: mode === BuildMode.NPM,

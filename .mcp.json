@@ -1,0 +1,26 @@
+{
+  "mcpServers": {
+    "omniscribe": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "F:\\Aplikacje\\omniscribe\\resources\\mcp-server\\index.cjs"
+      ],
+      "env": {
+        "OMNISCRIBE_SESSION_ID": "session-1-1794914444869",
+        "OMNISCRIBE_PROJECT_HASH": "00e7ffc45d9c",
+        "OMNISCRIBE_STATUS_URL": "http://127.0.0.1:9900/status",
+        "OMNISCRIBE_INSTANCE_ID": "b82e42f9-dfc2-4ae7-8c05-91917d1761f6"
+      }
+    }
+  },
+  "_omniscribe": {
+    "sessionId": "session-1-1794914444869",
+    "projectPath": "D:\\projekty\\Let-Me-Test",
+    "projectHash": "00e7ffc45d9c",
+    "updatedAt": "2026-11-17T11:20:44.992Z",
+    "managedCapabilities": [
+      "omniscribe"
+    ]
+  }
+}

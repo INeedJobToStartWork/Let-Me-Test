@@ -16,6 +16,7 @@
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
 		"format": "pnpm prettier . --write && pnpm prettier . --check",
+		"format:check": "pnpm prettier . --check",
 		"------------------------BUILDS-------------------------": "",
 		"build:dev": "pnpm cross-env NODE_ENV=development pnpm tsdown --config-loader unrun --config ./config/tsdownrc/tsdown.dev.ts",
 		"build:prod": "pnpm cross-env NODE_ENV=production pnpm tsdown --config-loader unrun --config ./config/tsdownrc/tsdown.prod.ts",
@@ -43,7 +44,6 @@
 		"eslint": "^8.57.1",
 		"prettier": "^3.8.3",
 		"publint": "^0.3.19",
-		"rollup-plugin-copy": "^3.5.0",
 		"tsdown": "^0.23.1",
 		"typescript": "^7.0.2",
 		"vitest": "^5.0.5"
